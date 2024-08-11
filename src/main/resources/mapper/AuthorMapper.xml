@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.xhs.mapper.AuthorMapper">
+
+
+    <insert id="insert">
+        INSERT INTO author (AUTHOR_ID, AUTHOR_NICK_NAME, AUTHOR_URL)
+        VALUES (#{authorId,jdbcType=VARCHAR}, #{authorNickName,jdbcType=VARCHAR}, #{authorUrl,jdbcType=VARCHAR})
+        ON DUPLICATE KEY UPDATE
+                             AUTHOR_NICK_NAME = VALUES(AUTHOR_NICK_NAME),
+                             AUTHOR_URL = VALUES(AUTHOR_URL)
+    </insert>
+</mapper>
