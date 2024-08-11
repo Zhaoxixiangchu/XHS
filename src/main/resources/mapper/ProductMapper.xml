@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.xhs.mapper.ProductMapper">
+
+
+    <insert id="insert">
+        INSERT INTO product (PRODUCT_TITLE, PRODUCT_ID, PRODUCT_TAGS, PRODUCT_DESC, PRODUCT_URL, PRODUCT_TYPE, PUBLISHED_TIME,
+                             LAST_UPDATE_DATE, AUTHOR_NICK_NAME, AUTHOR_ID, FAVORITE_COUNT, COMMENT_COUNT, SHARE_COUNT, LIKE_COUNT,
+                             URL, CREATE_DATE)
+        VALUES (#{productTitle,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productTags,jdbcType=VARCHAR}, #{productDesc,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR},
+            #{productType,jdbcType=VARCHAR}, #{publishedTime,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{authorNickName,jdbcType=VARCHAR},
+            #{authorId,jdbcType=VARCHAR}, #{favoriteCount,jdbcType=VARCHAR}, #{commentCount,jdbcType=VARCHAR}, #{shareCount,jdbcType=VARCHAR}, #{likeCount,jdbcType=VARCHAR},
+            #{url,jdbcType=VARCHAR}, now())
+        ON DUPLICATE KEY UPDATE
+            PRODUCT_TITLE = VALUES(PRODUCT_TITLE),
+            PRODUCT_TAGS = VALUES(PRODUCT_TAGS),
+            PRODUCT_DESC = VALUES(PRODUCT_DESC),
+            PRODUCT_URL = VALUES(PRODUCT_URL),
+            LAST_UPDATE_DATE = VALUES(LAST_UPDATE_DATE),
+            AUTHOR_NICK_NAME = VALUES(AUTHOR_NICK_NAME),
+            FAVORITE_COUNT = VALUES(FAVORITE_COUNT),
+            COMMENT_COUNT = VALUES(COMMENT_COUNT),
+            SHARE_COUNT = VALUES(SHARE_COUNT),
+            LIKE_COUNT = VALUES(LIKE_COUNT),
+            URL = VALUES(URL)
+    </insert>
+</mapper>

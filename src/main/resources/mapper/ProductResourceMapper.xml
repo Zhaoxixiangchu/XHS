@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.xhs.mapper.ProductResourceMapper">
+
+
+    <insert id="insert">
+        INSERT INTO product_resource (PRODUCT_ID, PRODUCT_TITLE, DOWNLOAD_URL, DYNAMIC_PHOTO_URL, CREATE_DATE)
+            VALUES 
+                <foreach collection="list" item="item" separator=",">
+                    (#{item.productId,jdbcType=VARCHAR}, #{item.productTitle,jdbcType=VARCHAR}, #{item.downloadUrl,jdbcType=VARCHAR},
+                     #{item.dynamicPhotoUrl,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP})
+                </foreach>
+    </insert>
+
+    <delete id="deleteByProductId">
+        DELETE FROM product_resource WHERE PRODUCT_ID = #{productId,jdbcType=VARCHAR}
+    </delete>
+</mapper>
