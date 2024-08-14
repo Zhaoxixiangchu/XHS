@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.xhs.mapper.UserMapper">
+
+    <insert id="add">
+        INSERT INTO user (USER_NAME, PASS_WORD, EMAIL, PHONE, CREATE_DATE, IS_ENABLE)
+            VALUES (#{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+                    #{createDate,jdbcType=TIMESTAMP}, #{isEnable,jdbcType=NUMERIC})
+    </insert>
+
+    <select id="login" resultType="org.example.xhs.entity.rsp.UserRsp">
+        SELECT ID, USER_NAME, PHONE, EMAIL, CREATE_DATE, IS_ENABLE FROM user
+               WHERE PHONE = #{userName,jdbcType=VARCHAR}  AND IS_ENABLE = 1
+        <if test="passWord != null and passWord.trim()!=''">
+            AND PASS_WORD = #{passWord,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="checkExist" resultType="java.lang.Integer">
+        SELECT 1 FROM user WHERE IS_ENABLE = 1 AND USER_NAME = #{userName,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
