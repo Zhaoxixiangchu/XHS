@@ -28,6 +28,16 @@ public class RedisUtil {
     }
 
     /**
+     * 设置Redis中存放的key-value
+     * @param key 键
+     * @param value 值
+     * @param timeout 超时时长，默认为秒
+     */
+    public void set(String key, Object value, long timeout) {
+        this.setWithExpiration(key, value, timeout, TimeUnit.SECONDS);
+    }
+
+    /**
      * 带有过期时间的key-value
      * @param key 键
      * @param value 值
