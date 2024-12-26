@@ -57,6 +57,7 @@ public class XhsServiceImpl implements IXhsService {
         }
         JSONObject result = new JSONObject();
         try {
+            log.info("请求地址: {}", apiConstants.xhsApi);
             String resultBody = HttpRequest.post(apiConstants.xhsApi).body(JSON.toJSONString(parseParam)).execute().body();
             result = JSONObject.parseObject(resultBody);
             Integer code = result.getInteger("code");
