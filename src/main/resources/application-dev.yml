@@ -2,10 +2,10 @@ server:
   port: 8080
 spring:
   redis:
-    host: 127.0.0.1
+    host: 10.0.10.4
     port: 6379
     # Redis服务器连接密码（默认为空）
-    password:
+    password: 123456
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -20,9 +20,9 @@ spring:
         min-idle: 0
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xhs?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    url: jdbc:mysql://10.0.10.4:3306/xhs?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
     username: root
-    password: 123456
+    password: 12345678
     # 初始连接数
     initialSize: 5
     # 最小连接池数量
@@ -113,8 +113,8 @@ api:
   xhs: http://localhost:8000/xhs/
 
 storage:
-  type: MINIO  # LOCAL 本地， MINIO，其他
-  local-path: D://XHS
+  type: LOCAL  # LOCAL 本地， MINIO，其他
+  local-path: /data/XHS
 
 oss:
   local:
