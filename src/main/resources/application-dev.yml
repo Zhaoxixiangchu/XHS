@@ -110,7 +110,7 @@ sa-token:
   is-log: true
 
 api:
-  xhs: http://172.17.0.3:8002/xhs/
+  xhs: http://172.17.0.3:8000/xhs/
 
 storage:
   type: LOCAL  # LOCAL 本地， MINIO，其他
